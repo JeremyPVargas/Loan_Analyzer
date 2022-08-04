@@ -139,32 +139,21 @@ print ()
 #    This function should include parameters for `future_value`, `remaining_months`, and the `annual_discount_rate`
 #    The function should return the `present_value` for the loan.
 
+# New defined montly present value as a function of the new loan paramenters (added by JPV)
 
-new_loan.get("loan_price")
-new_loan_price = (new_loan.get("loan_price"))
+def monthly_present_value(future_value, remaining_months, annual_discount_rate):
+    present_value = future_value / (1 + (annual_discount_rate/12)) ** remaining_months
+    return present_value
 
-new_loan.get("remaining_months")
-new_loan_remaining_months = (new_loan.get("remaining_months"))
+#formula for present value
+present_value = monthly_present_value(new_loan.get("future_value"), new_loan.get("remaining_months"), .2)
 
-new_loan.get("repayment_interval")
-new_loan_repayment_interval = (new_loan.get("repayment_interval"))
-
-new_loan.get("future_value")
-new_loan_future_value = (new_loan.get("future_value"))
-
-new_loan_annual_discount_rate = 0.20
-
+#added information for cosmetic or informational purposes for the user, if needed (added by JPV)
 print("New Loan Parameters")
-print(f"Loan Price: $ {new_loan_price}")
-print(f"Remaining Months: {new_loan_remaining_months}")
-print(f"Annual discount rate: {new_loan_annual_discount_rate}")
-
-
-# @TODO: Use the function to calculate the present value of the new loan given below.
-#    Use an `annual_discount_rate` of 0.2 for this new loan calculation.
-
-present_value_new_loan = (new_loan_future_value / ((1 + new_loan_annual_discount_rate / 12)) ** new_loan_remaining_months)
-print(f"The present value of the loan is: $ {present_value_new_loan: .2f}")
+print(f"{new_loan}")
+print("The annual discount rate is: 0.2")
+print()
+print(f"The present value of the loan is: $ {present_value: .2f}")
 print()
 print()
 
